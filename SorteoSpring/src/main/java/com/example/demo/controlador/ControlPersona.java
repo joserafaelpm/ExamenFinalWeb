@@ -25,29 +25,29 @@ public class ControlPersona {
 			model.addAttribute("listaPersonas", pDAO.findAll());
 			return "index";
 		}
-
-		@RequestMapping(value = "/eliminar/{id}")
+		@GetMapping({"/", "/eliminar/{id}"})
+		//@RequestMapping(value = "/eliminar/{id}")
 		public String eliminar(@PathVariable(value = "id") Integer id, Model model) {
 			// Optional<Heroe> heroe = hDAO.findById(id);
 			pDAO.deleteById(id);
 			return "redirect:/index";
 		}
-
-		@RequestMapping(value = "/crear/")
+		@GetMapping({"/", "/crear/"})
+		//@RequestMapping(value = "/crear/")
 		public String crear(Model model) {
 			Persona persona= new Persona();
 			model.addAttribute("persona", persona);
 			model.addAttribute("listaSorteo", sDAO.findAll());
 			return "formularioPersona";
 		}
-
-		@RequestMapping(value = "/form", method = RequestMethod.POST)
+		@GetMapping({"/", "/form"})
+		//@RequestMapping(value = "/form", method = RequestMethod.POST)
 		public String guardar(@Validated Persona persona, Model model) {
 			pDAO.save(persona);
 			return "redirect:index";
 		}
-
-		@RequestMapping(value = "/form/{id}")
+		@GetMapping({"/", "/form/{id}"})
+		//@RequestMapping(value = "/form/{id}")
 		public String editar(@PathVariable(value = "id") Integer id, Model model) {
 			Persona persona = pDAO.findById(id).orElse(null);
 			model.addAttribute("Persona", persona);
