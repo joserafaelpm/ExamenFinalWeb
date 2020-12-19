@@ -22,26 +22,26 @@ public class ControlSorteo {
 			model.addAttribute("listaSorteos", sDAO.findAll());
 			return "index2";
 		}
-
+	//@GetMapping({"/", "/eliminar/{id}"})
 		@RequestMapping(value = "/eliminar/{id}")
 		public String eliminar(@PathVariable(value = "id") Integer id, Model model) {
 			sDAO.deleteById(id);
 			return "redirect:/index2";
 		}
-
+		//@GetMapping({"/", "/crear/"})
 		@RequestMapping(value = "/crear/")
 		public String crear(Model model) {
 			Sorteo sorteo= new Sorteo();
 			model.addAttribute("sorteo", sorteo);
 			return "formularioSorteo";
 		}
-
+		//@GetMapping({"/", "/form"})
 		@RequestMapping(value = "/form", method = RequestMethod.POST)
 		public String guardar(@Validated Sorteo sorteo, Model model) {
 			sDAO.save(sorteo);
 			return "redirect:index2";
 		}
-
+		//@GetMapping({"/", "/form/{id}"})
 		@RequestMapping(value = "/form/{id}")
 		public String editar(@PathVariable(value = "id") Integer id, Model model) {
 			Sorteo sorteo = sDAO.findById(id).orElse(null);

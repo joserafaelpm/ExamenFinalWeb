@@ -19,34 +19,34 @@ public class ControlPersona {
 	@Autowired
 	ISorteo sDAO;
 	
-	@GetMapping({ "/", "/index" })
+	//@GetMapping({ "/", "/index" })
 	//@RequestMapping
 		public String List(Model model) {
 			model.addAttribute("listaPersonas", pDAO.findAll());
 			return "index";
 		}
-		@GetMapping({"/", "/eliminar/{id}"})
+		//@GetMapping({"/", "/eliminar/{id}"})
 		//@RequestMapping(value = "/eliminar/{id}")
 		public String eliminar(@PathVariable(value = "id") Integer id, Model model) {
 			// Optional<Heroe> heroe = hDAO.findById(id);
 			pDAO.deleteById(id);
 			return "redirect:/index";
 		}
-		@GetMapping({"/", "/crear/"})
-		//@RequestMapping(value = "/crear/")
+		//@GetMapping({"/", "/crear/"})
+	  //@RequestMapping(value = "/crear/")
 		public String crear(Model model) {
 			Persona persona= new Persona();
 			model.addAttribute("persona", persona);
 			model.addAttribute("listaSorteo", sDAO.findAll());
 			return "formularioPersona";
 		}
-		@GetMapping({"/", "/form"})
+		//@GetMapping({"/", "/form"})
 		//@RequestMapping(value = "/form", method = RequestMethod.POST)
 		public String guardar(@Validated Persona persona, Model model) {
 			pDAO.save(persona);
 			return "redirect:index";
 		}
-		@GetMapping({"/", "/form/{id}"})
+		//@GetMapping({"/", "/form/{id}"})
 		//@RequestMapping(value = "/form/{id}")
 		public String editar(@PathVariable(value = "id") Integer id, Model model) {
 			Persona persona = pDAO.findById(id).orElse(null);

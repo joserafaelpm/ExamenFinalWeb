@@ -2,6 +2,9 @@ package com.example.demo.entidades;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +23,7 @@ public class Sorteo implements Serializable {
 	private int id;
 
 	private int boletas;
-
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
 
